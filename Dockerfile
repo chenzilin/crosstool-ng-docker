@@ -19,4 +19,13 @@ RUN cd /home/chenzilin && \
     cd crosstool-ng/ && git init . && git add -A . && git commit -am "initial commit based on v1.23.0" && \
     ./configure && make -j8 && sudo make install
 
+RUN mkdir /home/chenzilin/patches
+COPY patches/*.patch /home/chenzilin/patches/
+RUN cd /home/chenzilin/crosstool-ng/ && git am /home/chenzilin/patches/*.patch && rm -rf /home/chenzilin/patches
+
+COPY dl-backup/dl.tar.bz2.* /home/chenzilin/crosstool-ng/
+RUN cd /home/chenzilin/crosstool-ng/ && cat dl.tar.bz2.* | tar xvj && rm dl.tar.bz2.*
+
+RUN mkdir /home/chenzilin/crosstool-ng/build
+
 WORKDIR /home/chenzilin/crosstool-ng

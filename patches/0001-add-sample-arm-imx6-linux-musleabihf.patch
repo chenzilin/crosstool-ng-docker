@@ -1,0 +1,109 @@
+From 56bd95c7a07f45c2b61bdf4d14ae84beab622d18 Mon Sep 17 00:00:00 2001
+From: ZiLin Chen <chenzilin115@gmail.com>
+Date: Fri, 3 Nov 2017 03:25:46 +0000
+Subject: [PATCH] add sample arm-imx6-linux-musleabihf
+
+	based on arm-cortexa9_neon-linux-gnueabihf
+---
+ .gitignore                                         | 49 ++++++++++++++++++++++
+ samples/arm-imx6-linux-musleabihf/crosstool.config | 32 ++++++++++++++
+ 2 files changed, 81 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 samples/arm-imx6-linux-musleabihf/crosstool.config
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..5a4ea34
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,49 @@
++dl/
++build/
++x-tools/
++.config
++.config.old
++Makefile
++config.gen/
++config.log
++config.status
++config/configure.in
++ct-ng
++build.log
++defconfig
++docs/ct-ng.1
++docs/ct-ng.1.gz
++kconfig/conf
++kconfig/conf.dep
++kconfig/conf.o
++kconfig/lxdialog/checklist.dep
++kconfig/lxdialog/checklist.o
++kconfig/lxdialog/inputbox.dep
++kconfig/lxdialog/inputbox.o
++kconfig/lxdialog/menubox.dep
++kconfig/lxdialog/menubox.o
++kconfig/lxdialog/textbox.dep
++kconfig/lxdialog/textbox.o
++kconfig/lxdialog/util.dep
++kconfig/lxdialog/util.o
++kconfig/lxdialog/yesno.dep
++kconfig/lxdialog/yesno.o
++kconfig/mconf
++kconfig/mconf.dep
++kconfig/mconf.o
++kconfig/nconf
++kconfig/nconf.dep
++kconfig/nconf.gui.dep
++kconfig/nconf.gui.o
++kconfig/nconf.o
++kconfig/zconf.hash.c
++kconfig/zconf.lex.c
++kconfig/zconf.tab.c
++kconfig/zconf.tab.dep
++kconfig/zconf.tab.o
++paths.mk
++paths.sh
++scripts/crosstool-NG.sh
++scripts/saveSample.sh
++scripts/scripts.mk
++scripts/showConfig.sh
+diff --git a/samples/arm-imx6-linux-musleabihf/crosstool.config b/samples/arm-imx6-linux-musleabihf/crosstool.config
+new file mode 100644
+index 0000000..49d77c0
+--- /dev/null
++++ b/samples/arm-imx6-linux-musleabihf/crosstool.config
+@@ -0,0 +1,32 @@
++CT_EXPERIMENTAL=y
++CT_LOCAL_TARBALLS_DIR="${CT_TOP_DIR}/dl"
++CT_WORK_DIR="${CT_TOP_DIR}/build"
++CT_PREFIX_DIR="${CT_PREFIX:-${CT_TOP_DIR}/x-tools}/${CT_HOST:+HOST-${CT_HOST}/}${CT_TARGET}"
++CT_STRIP_TARGET_TOOLCHAIN_EXECUTABLES=y
++CT_FORCE_EXTRACT=y
++CT_ARCH_arm=y
++CT_ARCH_CPU="cortex-a9"
++CT_ARCH_FPU="neon"
++CT_ARCH_FLOAT_HW=y
++CT_TARGET_VENDOR="imx6"
++CT_TOOLCHAIN_ENABLE_NLS=y
++CT_KERNEL_linux=y
++# CT_SHARED_LIBS is not set
++CT_BINUTILS_LINKER_LD_GOLD=y
++CT_BINUTILS_GOLD_THREADS=y
++CT_BINUTILS_LD_WRAPPER=y
++CT_BINUTILS_PLUGINS=y
++CT_LIBC_musl=y
++CT_CC_GCC_SHOW_LINARO=y
++CT_CC_LANG_CXX=y
++CT_DEBUG_gdb=y
++CT_GDB_CROSS_STATIC=y
++CT_GDB_NATIVE=y
++CT_GDB_NATIVE_STATIC=y
++CT_GDB_GDBSERVER_STATIC=y
++CT_ZLIB=y
++CT_COMP_TOOLS_FOR_HOST=y
++CT_COMP_TOOLS_autoconf=y
++CT_COMP_TOOLS_automake=y
++CT_COMP_TOOLS_m4=y
++CT_COMP_TOOLS_make=y
+-- 
+2.7.4
+
