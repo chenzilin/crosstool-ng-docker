@@ -1,7 +1,7 @@
 Usage:
 
 	1. First Enter Container
-		sudo docker run -it crosstool-ng-docker:latest /bin/bash
+		sudo docker run -it --name crosstool-ng-docker crosstool-ng-docker:latest /bin/bash
 
 	2. Enter Exited Container
 		sudo docker ps -a
@@ -41,7 +41,7 @@ Remeve Image:
 
 Run Container:
 
-	sudo docker run -it crosstool-ng-docker:latest /bin/bash
+	sudo docker run -it crosstool-ng-docker crosstool-ng-docker:latest /bin/bash
 
 List Containers:
 
